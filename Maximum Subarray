@@ -1,0 +1,28 @@
+Given an integer array nums, find the subarray with the largest sum, and return its sum.
+
+class Solution(object):
+    def maxSubArray(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        """
+        This first checks to see if the largest value found in nums is a negative number.
+        If that is the case, then clearly the rest of array is also filled with negative
+        integers, and so. the sum of any potential subarray can only be smaller then the 
+        current maximum value found in nums.
+        """
+        if max(nums) < 0:
+            return max(nums)
+
+        currentSum, maxSum = 0, 0
+        """
+        We iterate through all of nums, adding the current integer to current sum if it
+        is not negative. Then, the largest sum is set to be the larger of itself or the current
+        sum. After iterating through nums, have aquired the maximum value any sub-array can
+        generate, and so return max sum. 
+        """
+        for num in nums:
+            currentSum = max(0, currentSum + num)
+            maxSum = max(currentSum, maxSum)
+        return maxSum
